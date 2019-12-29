@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:peliculas/src/models/pelicula_model.dart';
 
 
 class CardSwiper extends StatelessWidget {
 
-  final List<dynamic> peliculas;
+  final List<Pelicula> peliculas;
 
   CardSwiper({ @required this.peliculas });
 
@@ -19,13 +20,17 @@ class CardSwiper extends StatelessWidget {
       padding: EdgeInsets.only(top: 10.0),
       child: Swiper(
         layout: SwiperLayout.STACK,
-        itemWidth: _screenSize.width * 0.7,
-        itemHeight: _screenSize.height * 0.5,
-        itemBuilder: (BuildContext context,int index){
+        itemWidth: _screenSize.width * 0.65,
+        itemHeight: _screenSize.height * 0.55,
+        itemBuilder: (BuildContext context, int index){
           
           return ClipRRect(
             borderRadius: BorderRadius.circular(20.0),
-            child: Image.asset('assets/images/escucha-tu-cuerpo-1.jpg', fit: BoxFit.cover ),
+            child: FadeInImage(
+              image: NetworkImage(peliculas[index].getPosterImg()),
+              placeholder: AssetImage('assets/images/no-image.jpg'),
+              fit: BoxFit.fitWidth,
+            ),
           );
         },
         itemCount: peliculas.length,

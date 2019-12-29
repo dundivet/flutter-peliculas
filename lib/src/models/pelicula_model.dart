@@ -17,6 +17,7 @@ class Peliculas {
 
 
 class Pelicula {
+
   double popularity;
   int voteCount;
   bool video;
@@ -65,6 +66,16 @@ class Pelicula {
     voteAverage      = json['vote_average'] / 1;
     overview         = json['overview'];
     releaseDate      = json['release_date'];
+
+  }
+
+  getPosterImg() {
+
+    if (posterPath == null) {
+      return '';
+    }
+
+    return 'https://image.tmdb.org/t/p/w500/$posterPath';
 
   }
 }
