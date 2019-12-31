@@ -78,4 +78,12 @@ class Pelicula {
     return 'https://image.tmdb.org/t/p/w500/$posterPath';
 
   }
+
+  getBackdropImg() {
+    if (backdropPath == null) {
+      return '';
+    }
+
+    return 'https://image.tmdb.org/t/p/w500/$backdropPath';
+  }
 }
