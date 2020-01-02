@@ -4,12 +4,9 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import 'package:peliculas/src/models/pelicula_model.dart';
+import 'package:peliculas/src/providers/abstract_provider.dart';
 
-class PeliculasProvider {
-
-  String _apiKey   = '0b3e06b059a7ba90360c68135cf5127b';
-  String _url      = 'api.themoviedb.org';
-  String _language = 'es-ES';
+class PeliculasProvider extends AbstractProvider{
 
   int _popularesPage = 0;
   bool _cargando     = false;
@@ -29,12 +26,12 @@ class PeliculasProvider {
 
   /// Obtiene las películas actuales en cines
   Future<List<Pelicula>> getEnCines() async {
-    final url = Uri.https(_url, '3/movie/now_playing', {
-      'api_key': _apiKey,
-      'language': _language
+    final uri = Uri.https(url, '3/movie/now_playing', {
+      'api_key': apiKey,
+      'language': language
     });
 
-    return await _procesarRespuesta( url );
+    return await _procesarRespuesta( uri );
   }
 
   /// Obtiene las películas populares
@@ -46,13 +43,13 @@ class PeliculasProvider {
 
     _popularesPage++;
 
-    final url = Uri.https(_url, '3/movie/popular', {
-      'api_key': _apiKey,
-      'language': _language,
+    final uri = Uri.https(url, '3/movie/popular', {
+      'api_key': apiKey,
+      'language': language,
       'page': _popularesPage.toString(),
     });
 
-    final resp = await _procesarRespuesta( url );
+    final resp = await _procesarRespuesta( uri );
 
     _populares.addAll( resp );
     popularesSink( _populares );

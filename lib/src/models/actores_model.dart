@@ -2,6 +2,8 @@ class Cast {
 
   List<Actor> actores = new List();
 
+  Cast();
+
   Cast.fromJsonList( List<Map<String, dynamic>> jsonList) {
   
     if (jsonList == null) return;
