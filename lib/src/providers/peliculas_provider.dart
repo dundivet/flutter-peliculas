@@ -69,4 +69,14 @@ class PeliculasProvider extends AbstractProvider{
     return peliculas.items;
   }
 
+  Future<List<Pelicula>> searchMovies(String query) async {
+
+    final uri = Uri.https(url, '3/search/movie', {
+      'api_key' : apiKey,
+      'language': language,
+      'query'   : query
+    });
+
+    return await _procesarRespuesta( uri );
+  }
 }
