@@ -4,7 +4,7 @@ class Cast {
 
   Cast();
 
-  Cast.fromJsonList( List<Map<String, dynamic>> jsonList) {
+  Cast.fromJsonList( List<dynamic> jsonList) {
   
     if (jsonList == null) return;
 
